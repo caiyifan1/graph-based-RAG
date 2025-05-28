@@ -99,6 +99,7 @@ class EmbInferDataset:
                 text_entity_list.append(entity)
 
         # Create entity IDs.
+        # entity2id = {"实体1": 0, "实体2": 1, ...}
         entity2id = dict()
         entity_id = 0
         for entity in text_entity_list:
@@ -135,6 +136,7 @@ class EmbInferDataset:
                 q_entity_id_list.append(entity2id[entity])
 
         # Prepare output labels.
+        # 返回答案实体entity列表的id
         assert sample['a_entity'] == sample['answer']
         a_entity_id_list = []
         for entity in sample['a_entity']:
