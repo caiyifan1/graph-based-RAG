@@ -30,10 +30,11 @@ def main(args):
     
     torch.set_num_threads(config['env']['num_threads'])
 
-    if args.dataset == 'cwq':
-        input_file = os.path.join('rmanluo', 'RoG-cwq')
-    else:
-        input_file = os.path.join('ml1996', 'webqsp')
+    if args.dataset == 'all_news_kg':
+        with open('../data_preprocess/all_news_kg.json', 'r', encoding='utf-8') as f:
+            all_news_kg = json.load(f)
+        dataset = [{'id': i, 'triple': triple} for i, triple in enumerate(all_news_kg)]
+
 
     train_set = load_dataset(input_file, split='train')
     val_set = load_dataset(input_file, split='validation')
